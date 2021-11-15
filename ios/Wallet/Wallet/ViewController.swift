@@ -72,7 +72,7 @@ class ViewController: UIViewController {
     @IBAction func reject(_ sender: Any?) {
         let result = WalletDirectResult(data: [:])
         result.id = lastRequest?.id
-        result.successful = true
+        result.successful = false
         (WalletDirectManager.shared as? DApps)?.respond(result: result, completion: { [weak self] _ in
 
         })
