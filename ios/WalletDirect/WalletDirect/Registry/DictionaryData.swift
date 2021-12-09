@@ -10,8 +10,8 @@ import Foundation
 public class DictionaryData {
     internal var data: [String: Any]
 
-    public init(data: [String: Any]) {
-        self.data = data
+    public init(data: [String: Any]?) {
+        self.data = data ?? [String: Any]()
     }
 
     internal func value(path: String) -> Any? {

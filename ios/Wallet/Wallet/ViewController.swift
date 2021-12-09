@@ -15,6 +15,8 @@ class ViewController: UIViewController {
     
     @IBOutlet var appNameLabel: UILabel?
     @IBOutlet var developerLabel: UILabel?
+    
+    private var processor = WalletDirectProcessor()
 
     internal var lastRequest: WalletDirectRequest? {
         didSet {
@@ -61,12 +63,22 @@ class ViewController: UIViewController {
     }
     
     @IBAction func approve(_ sender: Any?) {
-        let result = WalletDirectResult(data: [:])
-        result.id = lastRequest?.id
-        result.successful = true
-        (WalletDirectManager.shared as? DApps)?.respond(result: result, completion: { [weak self] _ in
+        if let lastRequest = lastRequest {
+            let result = processor.process(request: lastRequest, walletProcessing: { chainId, account in
+                let response = WalletDirectProtocolResponse(data: nil)
+                response.chainId = "3"  // Ropsten
+                response.account = "0x00000000001111111111222222222233"
+                return response
+            }, methodProcessing: { request in
+                let response = WalletDirectResponse(data: nil)
+                response.successful = true
+                response.jsonRpc = ["Data": "Dummy"]
+                return response
+            })
+            (WalletDirectManager.shared as? DApps)?.respond(result: result, completion: { [weak self] _ in
 
-        })
+            })
+        }
     }
 
     @IBAction func reject(_ sender: Any?) {

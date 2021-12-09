@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		310A14D127615F660059812C /* Platform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 310A14D027615F660059812C /* Platform.swift */; };
+		310A14D3276167B00059812C /* WalletDirectProtocolRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 310A14D2276167B00059812C /* WalletDirectProtocolRequest.swift */; };
+		310A14D5276175BC0059812C /* Wallets+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 310A14D4276175BC0059812C /* Wallets+Convenience.swift */; };
+		310A14D727618D550059812C /* WalletDirectProtocolResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 310A14D627618D550059812C /* WalletDirectProtocolResponse.swift */; };
+		310A14DA27618F980059812C /* WalletDirectProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 310A14D927618F980059812C /* WalletDirectProcessor.swift */; };
 		31AE30F2273DAA200099170C /* WalletDirectAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31AE30F1273DAA200099170C /* WalletDirectAppDelegate.swift */; };
 		31B4E704273D818600342F31 /* WalletDirect.docc in Sources */ = {isa = PBXBuildFile; fileRef = 31B4E703273D818600342F31 /* WalletDirect.docc */; };
 		31B4E70A273D818600342F31 /* WalletDirect.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31B4E6FF273D818600342F31 /* WalletDirect.framework */; };
@@ -40,6 +45,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		310A14D027615F660059812C /* Platform.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Platform.swift; sourceTree = "<group>"; };
+		310A14D2276167B00059812C /* WalletDirectProtocolRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletDirectProtocolRequest.swift; sourceTree = "<group>"; };
+		310A14D4276175BC0059812C /* Wallets+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Wallets+Convenience.swift"; sourceTree = "<group>"; };
+		310A14D627618D550059812C /* WalletDirectProtocolResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletDirectProtocolResponse.swift; sourceTree = "<group>"; };
+		310A14D927618F980059812C /* WalletDirectProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletDirectProcessor.swift; sourceTree = "<group>"; };
 		31AE30F1273DAA200099170C /* WalletDirectAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletDirectAppDelegate.swift; sourceTree = "<group>"; };
 		31B4E6FF273D818600342F31 /* WalletDirect.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = WalletDirect.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		31B4E702273D818600342F31 /* WalletDirect.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WalletDirect.h; sourceTree = "<group>"; };
@@ -82,6 +92,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		310A14D827618F860059812C /* Processor */ = {
+			isa = PBXGroup;
+			children = (
+				310A14D927618F980059812C /* WalletDirectProcessor.swift */,
+			);
+			path = Processor;
+			sourceTree = "<group>";
+		};
 		31AE30F0273DA9EF0099170C /* App */ = {
 			isa = PBXGroup;
 			children = (
@@ -111,6 +129,7 @@
 		31B4E701273D818600342F31 /* WalletDirect */ = {
 			isa = PBXGroup;
 			children = (
+				310A14D827618F860059812C /* Processor */,
 				31AE30F0273DA9EF0099170C /* App */,
 				31B4E745273D895A00342F31 /* Request */,
 				31B4E73B273D86FB00342F31 /* WalletDirect */,
@@ -133,10 +152,11 @@
 			isa = PBXGroup;
 			children = (
 				31B4E73D273D873300342F31 /* DAppsRegistries.swift */,
+				31B4E748273D899300342F31 /* DictionaryData.swift */,
 				31B4E73C273D86FB00342F31 /* Registries.swift */,
 				31B4E73A273D86F600342F31 /* Registry.swift */,
 				31B4E73F273D873D00342F31 /* WalletsRegistries.swift */,
-				31B4E748273D899300342F31 /* DictionaryData.swift */,
+				310A14D027615F660059812C /* Platform.swift */,
 			);
 			path = Registry;
 			sourceTree = "<group>";
@@ -144,9 +164,10 @@
 		31B4E73B273D86FB00342F31 /* WalletDirect */ = {
 			isa = PBXGroup;
 			children = (
+				31B4E75F273D9EFA00342F31 /* DApps.swift */,
 				31B4E757273D931E00342F31 /* WalletDirectManager.swift */,
 				31B4E75B273D98A300342F31 /* Wallets.swift */,
-				31B4E75F273D9EFA00342F31 /* DApps.swift */,
+				310A14D4276175BC0059812C /* Wallets+Convenience.swift */,
 			);
 			path = WalletDirect;
 			sourceTree = "<group>";
@@ -154,13 +175,15 @@
 		31B4E745273D895A00342F31 /* Request */ = {
 			isa = PBXGroup;
 			children = (
-				31B4E746273D896700342F31 /* WalletDirectRequest.swift */,
-				31B4E74A273D8A1800342F31 /* WalletDirectMethod.swift */,
-				31B4E74C273D8C6200342F31 /* WalletDirectResult.swift */,
-				31B4E74E273D8C8B00342F31 /* WalletDirectResponse.swift */,
-				31B4E750273D8CF100342F31 /* WalletDirectPayload.swift */,
 				31B4E752273D8D8B00342F31 /* WalletDirectError.swift */,
+				31B4E74A273D8A1800342F31 /* WalletDirectMethod.swift */,
+				31B4E750273D8CF100342F31 /* WalletDirectPayload.swift */,
+				310A14D2276167B00059812C /* WalletDirectProtocolRequest.swift */,
+				310A14D627618D550059812C /* WalletDirectProtocolResponse.swift */,
 				31B4E759273D942F00342F31 /* WalletDirectProtocols.swift */,
+				31B4E746273D896700342F31 /* WalletDirectRequest.swift */,
+				31B4E74E273D8C8B00342F31 /* WalletDirectResponse.swift */,
+				31B4E74C273D8C6200342F31 /* WalletDirectResult.swift */,
 			);
 			path = Request;
 			sourceTree = "<group>";
@@ -274,13 +297,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				310A14DA27618F980059812C /* WalletDirectProcessor.swift in Sources */,
+				310A14D127615F660059812C /* Platform.swift in Sources */,
 				31B4E73E273D873300342F31 /* DAppsRegistries.swift in Sources */,
 				31B4E742273D87CF00342F31 /* Registry.swift in Sources */,
 				31B4E74D273D8C6200342F31 /* WalletDirectResult.swift in Sources */,
+				310A14D5276175BC0059812C /* Wallets+Convenience.swift in Sources */,
 				31B4E741273D87CC00342F31 /* Registries.swift in Sources */,
 				31B4E753273D8D8B00342F31 /* WalletDirectError.swift in Sources */,
 				31B4E75C273D98A300342F31 /* Wallets.swift in Sources */,
 				31B4E760273D9EFA00342F31 /* DApps.swift in Sources */,
+				310A14D727618D550059812C /* WalletDirectProtocolResponse.swift in Sources */,
 				31B4E74F273D8C8B00342F31 /* WalletDirectResponse.swift in Sources */,
 				31AE30F2273DAA200099170C /* WalletDirectAppDelegate.swift in Sources */,
 				31B4E758273D931E00342F31 /* WalletDirectManager.swift in Sources */,
@@ -290,6 +317,7 @@
 				31B4E749273D899300342F31 /* DictionaryData.swift in Sources */,
 				31B4E751273D8CF100342F31 /* WalletDirectPayload.swift in Sources */,
 				31B4E74B273D8A1800342F31 /* WalletDirectMethod.swift in Sources */,
+				310A14D3276167B00059812C /* WalletDirectProtocolRequest.swift in Sources */,
 				31B4E75A273D942F00342F31 /* WalletDirectProtocols.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

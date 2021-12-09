@@ -17,32 +17,45 @@ public class WalletDirectRequest: DictionaryData, WalletDirectPayloadProtocol {
         }
     }
 
-    public var methods: [WalletDirectMethod]?
-    
+    public var protocolRequests: [String: WalletDirectProtocolRequest]?
+
     public static func from(payload: [String: Any]) -> WalletDirectRequest {
         // this is called by wallet to retrieve payload from dApp's request
-        let request = WalletDirectRequest(data: payload)
-        if let methodsData = payload["methods"] as? [[String: Any]] {
-            var methods = [WalletDirectMethod]()
-            for methodData in methodsData {
-                methods.append(WalletDirectMethod(data: methodData))
-            }
-            request.methods = methods
-        }
-        return request
+        return WalletDirectRequest(data: payload)
     }
     
+    public override init(data: [String : Any]?) {
+        super.init(data: data)
+        parseProtocols(data: data?["protocols"] as? [String: Any])
+    }
+
+    private func parseProtocols(data: [String: Any]?) {
+        if let data = data {
+            var protocolRequests = [String: WalletDirectProtocolRequest]()
+            for (key, value) in data {
+                // key is the protocol name
+                if let protocolData = value as? [String: Any] {
+                    let protocolRequest = WalletDirectProtocolRequest(data: protocolData)
+                    protocolRequests[key] = protocolRequest
+                }
+            }
+            self.protocolRequests = protocolRequests
+        } else {
+            protocolRequests = nil
+        }
+    }
+
     public func payload() -> [String: Any] {
         // this is called by dApp to generate payload to send to Wallet
         var payload = data
-        if let methods = methods {
-            var methodsData = [[String: Any]]()
-            for method in methods {
-                methodsData.append(method.data)
+        if let protocolRequests = protocolRequests {
+            var protocolRequestsData = [String: Any]()
+            for (key, protocolRequest) in protocolRequests {
+                protocolRequestsData[key] = protocolRequest.payload()
             }
-            payload["methods"] = methodsData
+            payload["protocols"] = protocolRequestsData
         } else {
-            payload["methods"] = nil
+            payload["protocols"] = nil
         }
         return payload
     }

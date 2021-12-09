@@ -25,34 +25,20 @@ public class Wallets: WalletDirectManager {
         return registries.installed
     }
 
-    private func randomId() -> String {
-        return String(Int.random(in: 10000000000000000 ..< 99999999999999999))
-    }
-
-    public func send(chainId: Int?, account: String?, rpcMethods: [[String: Any]], registry: Registry, completion: WalletDirectCompletion?) {
-        let requestId = randomId()
-        let request = WalletDirectRequest(data: [:])
-        request.id = requestId
-        request.dapp_uuid = dAppId
-        request.chainId = chainId
-        request.account = account
-        var methods = [WalletDirectMethod]()
-        for rpcMethod in rpcMethods {
-            let method = WalletDirectMethod(data: [:])
-            method.id = randomId()
-            method.jsonRpc = rpcMethod
-            methods.append(method)
+    public func send(request: WalletDirectRequest, registry: Registry, completion: WalletDirectCompletion?) {
+        if request.id == nil {
+            request.id = randomId()
         }
-        request.methods = methods
-        pending[requestId] = request
+        request.dapp_uuid = dAppId
+        pending[request.id!] = request
         send(payload: request, registry: registry, completion: completion)
     }
-    
+
     override internal func payload(json: [String: Any]) -> WalletDirectPayloadProtocol? {
         return WalletDirectResult(data: json)
     }
-    
-    internal override func receive(payload: WalletDirectPayloadProtocol) {
+
+    override internal func receive(payload: WalletDirectPayloadProtocol) {
         if let result = payload as? WalletDirectResult, let requestId = result.id, let request = pending[requestId] as? WalletDirectRequest {
             pending[requestId] = nil
             receiving(result, request)

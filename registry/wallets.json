@@ -1,22 +1,25 @@
 {
-  "151732fa9c0a6a76c05d0c62f79792b84ef92654cd4388409c4e2ebc8171e44b": {
-    "name": "dYdX Sample Wallet",
-    "deeplink": "dydxwallet:///walletdirect",
-    "platforms": {
-      "ios": {
-        "supported": [
-          "151732fa9c0b84ef92654cd4388409c4e2ebc81a6a76c05d0c62f7979271e44b"
-        ]
-      },
-      "android": {
-        "supported": ["(list of dApp ID)"]
-      }
-    },
-    "metadata": {
-      "shortName": "dYdX Wallet",
-      "imageUrl": "https://raw.githubusercontent.com/WalletConnect/walletconnect-registry/master/public/logo/lg/09c4e2ebc81a6a76c05d0c62f797151732fa9c0b84ef92654cd438849271e44b.jpeg",
-      "developer": "dYdX",
-      "developerUrl": "https://dydx.exchange"
-    }
+  "151732fa9c0a6a76c05d0c62f79792b84ef92654cd4388409c4e2ebc8171e44b":{
+     "name":"dYdX Sample Wallet",
+     "platforms":{
+        "ios":{
+           "deeplink":"dydxwallet:///walletdirect",
+           "protocols":{
+              "ethereum":[
+                 "1",
+                 "3"
+              ]
+           }
+        },
+        "android":{
+           "deeplink":"dydxwallet:///walletdirect"
+        }
+     },
+     "metadata":{
+        "shortName":"dYdX Wallet",
+        "imageUrl":"https://raw.githubusercontent.com/WalletConnect/walletconnect-registry/master/public/logo/lg/09c4e2ebc81a6a76c05d0c62f797151732fa9c0b84ef92654cd438849271e44b.jpeg",
+        "developer":"dYdX",
+        "developerUrl":"https://dydx.exchange"
+     }
   }
 }

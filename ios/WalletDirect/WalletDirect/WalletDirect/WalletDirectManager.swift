@@ -59,6 +59,10 @@ public class WalletDirectManager {
         }
     }
 
+    public func randomId() -> String {
+        return String(Int.random(in: 10000000000000000 ..< 99999999999999999))
+    }
+
     internal func payload(json: [String: Any]) -> WalletDirectPayloadProtocol? {
         return nil
     }

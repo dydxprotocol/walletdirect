@@ -13,10 +13,6 @@ public class Registry: DictionaryData {
         return value(path: "name") as? String
     }
 
-    public var deeplink: String? {
-        return value(path: "deeplink") as? String
-    }
-
     public var shortName: String? {
         return value(path: "metadata/shortName") as? String
     }
@@ -33,10 +29,35 @@ public class Registry: DictionaryData {
         return value(path: "metadata/developerUrl") as? String
     }
 
+    public var platforms: [String: Platform]?
     public var installed: Bool = false
 
-    override public init(data: [String: Any]) {
+    public var native: Platform? {
+        return platforms?["ios"]
+    }
+    
+    public var deeplink: String? {
+        return native?.deeplink
+    }
+    
+    public var link: String? {
+        return native?.deeplink ?? native?.universallink
+    }
+    
+    override public init(data: [String: Any]?) {
         super.init(data: data)
+        if let platformsData = data?["platforms"] as? [String: Any] {
+            var platforms = [String: Platform]()
+            for (key, value) in platformsData {
+                if let data = value as? [String: Any] {
+                    let platform = Platform(data: data)
+                    platforms[key] = platform
+                }
+            }
+            self.platforms = platforms
+        } else {
+            platforms = nil
+        }
         checkInstallation()
     }
 
@@ -44,5 +65,13 @@ public class Registry: DictionaryData {
         if let deeplink = deeplink, let url = URL(string: deeplink) {
             installed = UIApplication.shared.canOpenURL(url)
         }
+    }
+}
+
+public extension Registry {
+    // For dApp
+
+    var web: Platform? {
+        return platforms?["web"]
     }
 }

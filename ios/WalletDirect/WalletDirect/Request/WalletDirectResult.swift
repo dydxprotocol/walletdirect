@@ -17,41 +17,46 @@ public class WalletDirectResult: DictionaryData, WalletDirectPayloadProtocol {
         }
     }
 
-    public var responses: [WalletDirectResponse]?
+    public var protocolResponses: [String: WalletDirectProtocolResponse]?
     public var error: WalletDirectError?
 
     public static func from(payload: [String: Any]) -> WalletDirectResult {
         // this is called by wallet to retrieve payload from dApp's request
-        let result = WalletDirectResult(data: payload)
-        if let responsesData = payload["responses"] as? [[String: Any]] {
-            var responses = [WalletDirectResponse]()
-            for responseData in responsesData {
-                responses.append(WalletDirectResponse(data: responseData))
+        return WalletDirectResult(data: payload)
+    }
+
+    override public init(data: [String: Any]?) {
+        super.init(data: data)
+        parseProtocols(data: data?["protocols"] as? [String: Any])
+    }
+
+    private func parseProtocols(data: [String: Any]?) {
+        if let data = data {
+            var protocolResponses = [String: WalletDirectProtocolResponse]()
+            for (key, value) in data {
+                // key is the protocol name
+                if let protocolData = value as? [String: Any] {
+                    let protocolRequest = WalletDirectProtocolResponse(data: protocolData)
+                    protocolResponses[key] = protocolRequest
+                }
             }
-            result.responses = responses
+            self.protocolResponses = protocolResponses
+        } else {
+            protocolResponses = nil
         }
-        if let errorData = payload["error"] as? [String: Any] {
-            result.error = WalletDirectError(data: errorData)
-        }
-        return result
     }
 
     public func payload() -> [String: Any] {
         // this is called by dApp to generate payload to send to Wallet
         var payload = data
-        if let responses = responses {
-            var responsesData = [[String: Any]]()
-            for response in responses {
-                responsesData.append(response.data)
+        if let protocolResponses = protocolResponses {
+            var protocolResponsesData = [String: Any]()
+            for (key, protocolResponse) in protocolResponses {
+                protocolResponsesData[key] = protocolResponse.payload()
             }
-            payload["responses"] = responsesData
+            payload["protocols"] = protocolResponsesData
         } else {
-            payload["responses"] = nil
-        }
-        if let error = error {
-            payload["error"] = error.data
-        } else {
-            payload["error"] = nil
+            payload["protocols"] = nil
         }
         return payload
     }

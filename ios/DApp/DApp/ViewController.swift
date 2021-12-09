@@ -13,7 +13,7 @@ class ViewController: UIViewController {
     @IBOutlet var resultTextView: UITextView?
 
     @IBOutlet var sendButton: UIButton?
-
+    
     internal var lastRequest: WalletDirectRequest? {
         didSet {
             didSetLastRequest()
@@ -52,14 +52,23 @@ class ViewController: UIViewController {
         }
     }
 
-    @IBAction func send(_ sender: Any?) {
+    @IBAction func getWalletAddress(_ sender: Any?) {
         if let wallets = WalletDirectManager.shared as? Wallets, let installed = wallets.installed().first {
-            let dummyMethod = ["method": "Sign", "data": "Dummy Data"]
-            wallets.send(chainId: 3, account: "0x1234", rpcMethods: [dummyMethod], registry: installed) { _ in
+            wallets.getAccounts(protocols: ["ethereum": "3"], registry: installed) { [weak self] _ in
             }
         } else {
             message("No wallet is installed")
         }
+    }
+
+    @IBAction func sendSigningRequests(_ sender: Any?) {
+//        if let wallets = WalletDirectManager.shared as? Wallets, let installed = wallets.installed().first {
+//            let dummyMethod = ["method": "Sign", "data": "Dummy Data"]
+//            wallets.send(chainId: 3, account: "0x1234", rpcMethods: [dummyMethod], registry: installed) { _ in
+//            }
+//        } else {
+//            message("No wallet is installed")
+//        }
     }
 
     private func message(_ message: String) {
