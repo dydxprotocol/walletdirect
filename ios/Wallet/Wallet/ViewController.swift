@@ -12,10 +12,10 @@ class ViewController: UIViewController {
     @IBOutlet var textView: UITextView?
     @IBOutlet var approveButton: UIButton?
     @IBOutlet var rejectButton: UIButton?
-    
+
     @IBOutlet var appNameLabel: UILabel?
     @IBOutlet var developerLabel: UILabel?
-    
+
     private var processor = WalletDirectProcessor()
 
     internal var lastRequest: WalletDirectRequest? {
@@ -23,7 +23,7 @@ class ViewController: UIViewController {
             didSetLastRequest()
         }
     }
-    
+
     internal var appRegistry: Registry? {
         didSet {
             didSetAppRegistry()
@@ -51,7 +51,7 @@ class ViewController: UIViewController {
             textView?.text = nil
         }
     }
-    
+
     func didSetAppRegistry() {
         if let appRegistry = appRegistry {
             appNameLabel?.text = appRegistry.name
@@ -61,18 +61,31 @@ class ViewController: UIViewController {
             developerLabel?.text = nil
         }
     }
-    
+
     @IBAction func approve(_ sender: Any?) {
         if let lastRequest = lastRequest {
-            let result = processor.process(request: lastRequest, walletProcessing: { chainId, account in
+            let result = processor.process(request: lastRequest, walletProcessing: { thisProtocol, chainId, account in
                 let response = WalletDirectProtocolResponse(data: nil)
-                response.chainId = "3"  // Ropsten
-                response.account = "0x00000000001111111111222222222233"
+                if thisProtocol == "ethereum" {
+                    response.chainId = chainId ?? "3" // Ropsten
+                    response.account = account ?? "0x00000000001111111111222222222233"
+                    response.successful = true
+                } else {
+                    response.successful = false
+                }
                 return response
-            }, methodProcessing: { request in
+            }, methodProcessing: { thisProtocol, chainId, account, method in
                 let response = WalletDirectResponse(data: nil)
-                response.successful = true
-                response.jsonRpc = ["Data": "Dummy"]
+                if thisProtocol == "ethereum" {
+                    if let eth_signTypedData = method.jsonRpc?["eth_signTypedData"] as? [String: Any] {
+                        response.successful = true
+                        response.jsonRpc = ["Data": "Dummy"]
+                    } else {
+                        response.successful = false
+                    }
+                } else {
+                    response.successful = false
+                }
                 return response
             })
             (WalletDirectManager.shared as? DApps)?.respond(result: result, completion: { [weak self] _ in

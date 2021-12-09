@@ -8,6 +8,15 @@
 import Foundation
 
 public class WalletDirectProtocolResponse: DictionaryData {
+    public var successful: Bool? {
+        get {
+            return value(path: "successful") as? Bool
+        }
+        set {
+            set(value: newValue, path: "successful")
+        }
+    }
+    
     public var chainId: String? {
         get {
             return value(path: "chainId") as? String

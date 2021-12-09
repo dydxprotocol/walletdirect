@@ -12,6 +12,7 @@
 		310A14D5276175BC0059812C /* Wallets+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 310A14D4276175BC0059812C /* Wallets+Convenience.swift */; };
 		310A14D727618D550059812C /* WalletDirectProtocolResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 310A14D627618D550059812C /* WalletDirectProtocolResponse.swift */; };
 		310A14DA27618F980059812C /* WalletDirectProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 310A14D927618F980059812C /* WalletDirectProcessor.swift */; };
+		310A1537276196A90059812C /* JsonUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 310A1536276196A90059812C /* JsonUtils.swift */; };
 		31AE30F2273DAA200099170C /* WalletDirectAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31AE30F1273DAA200099170C /* WalletDirectAppDelegate.swift */; };
 		31B4E704273D818600342F31 /* WalletDirect.docc in Sources */ = {isa = PBXBuildFile; fileRef = 31B4E703273D818600342F31 /* WalletDirect.docc */; };
 		31B4E70A273D818600342F31 /* WalletDirect.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31B4E6FF273D818600342F31 /* WalletDirect.framework */; };
@@ -50,6 +51,7 @@
 		310A14D4276175BC0059812C /* Wallets+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Wallets+Convenience.swift"; sourceTree = "<group>"; };
 		310A14D627618D550059812C /* WalletDirectProtocolResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletDirectProtocolResponse.swift; sourceTree = "<group>"; };
 		310A14D927618F980059812C /* WalletDirectProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletDirectProcessor.swift; sourceTree = "<group>"; };
+		310A1536276196A90059812C /* JsonUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonUtils.swift; sourceTree = "<group>"; };
 		31AE30F1273DAA200099170C /* WalletDirectAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletDirectAppDelegate.swift; sourceTree = "<group>"; };
 		31B4E6FF273D818600342F31 /* WalletDirect.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = WalletDirect.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		31B4E702273D818600342F31 /* WalletDirect.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WalletDirect.h; sourceTree = "<group>"; };
@@ -157,6 +159,7 @@
 				31B4E73A273D86F600342F31 /* Registry.swift */,
 				31B4E73F273D873D00342F31 /* WalletsRegistries.swift */,
 				310A14D027615F660059812C /* Platform.swift */,
+				310A1536276196A90059812C /* JsonUtils.swift */,
 			);
 			path = Registry;
 			sourceTree = "<group>";
@@ -300,6 +303,7 @@
 				310A14DA27618F980059812C /* WalletDirectProcessor.swift in Sources */,
 				310A14D127615F660059812C /* Platform.swift in Sources */,
 				31B4E73E273D873300342F31 /* DAppsRegistries.swift in Sources */,
+				310A1537276196A90059812C /* JsonUtils.swift in Sources */,
 				31B4E742273D87CF00342F31 /* Registry.swift in Sources */,
 				31B4E74D273D8C6200342F31 /* WalletDirectResult.swift in Sources */,
 				310A14D5276175BC0059812C /* Wallets+Convenience.swift in Sources */,

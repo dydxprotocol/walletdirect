@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		310A15322761960F0059812C /* signature1.json in Resources */ = {isa = PBXBuildFile; fileRef = 310A15312761960F0059812C /* signature1.json */; };
+		310A1535276196520059812C /* signature2.json in Resources */ = {isa = PBXBuildFile; fileRef = 310A1534276196520059812C /* signature2.json */; };
 		31B4E686273D7C7600342F31 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31B4E685273D7C7600342F31 /* AppDelegate.swift */; };
 		31B4E688273D7C7600342F31 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31B4E687273D7C7600342F31 /* SceneDelegate.swift */; };
 		31B4E68A273D7C7600342F31 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31B4E689273D7C7600342F31 /* ViewController.swift */; };
@@ -74,6 +76,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		310A15312761960F0059812C /* signature1.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = signature1.json; sourceTree = "<group>"; };
+		310A1534276196520059812C /* signature2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = signature2.json; sourceTree = "<group>"; };
 		31B4E682273D7C7600342F31 /* DApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		31B4E685273D7C7600342F31 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		31B4E687273D7C7600342F31 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -150,6 +154,8 @@
 				31B4E690273D7C7800342F31 /* LaunchScreen.storyboard */,
 				31B4E6F3273D809500342F31 /* wallets.json */,
 				31B4E693273D7C7800342F31 /* Info.plist */,
+				310A15312761960F0059812C /* signature1.json */,
+				310A1534276196520059812C /* signature2.json */,
 			);
 			path = DApp;
 			sourceTree = "<group>";
@@ -317,7 +323,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				31B4E6F4273D809500342F31 /* wallets.json in Resources */,
+				310A15322761960F0059812C /* signature1.json in Resources */,
 				31B4E692273D7C7800342F31 /* LaunchScreen.storyboard in Resources */,
+				310A1535276196520059812C /* signature2.json in Resources */,
 				31B4E68F273D7C7800342F31 /* Assets.xcassets in Resources */,
 				31B4E68D273D7C7600342F31 /* Main.storyboard in Resources */,
 			);

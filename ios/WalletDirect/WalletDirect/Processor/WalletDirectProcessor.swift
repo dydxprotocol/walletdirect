@@ -7,8 +7,8 @@
 
 import Foundation
 
-public typealias WalletDirectMethodProcessing = (_ method: WalletDirectMethod) -> WalletDirectResponse
-public typealias WalletDirectWalletProcessing = (_ chainId: String?, _ account: String?) -> WalletDirectProtocolResponse
+public typealias WalletDirectMethodProcessing = (_ protocol: String?, _ chainId: String?, _ account: String?, _ method: WalletDirectMethod) -> WalletDirectResponse
+public typealias WalletDirectWalletProcessing = (_ protocol: String?, _ chainId: String?, _ account: String?) -> WalletDirectProtocolResponse
 
 public class WalletDirectProcessor {
     public func process(request: WalletDirectRequest, walletProcessing: WalletDirectWalletProcessing, methodProcessing: WalletDirectMethodProcessing) -> WalletDirectResult {
@@ -16,18 +16,18 @@ public class WalletDirectProcessor {
         result.id = request.id
         if let protocolRequests = request.protocolRequests {
             var protocolResponses = [String: WalletDirectProtocolResponse]()
-            for (key, protocolRequest) in protocolRequests {
-                let protocolResponse = walletProcessing(protocolRequest.chainId, protocolRequest.account)
+            for (thisProtocol, protocolRequest) in protocolRequests {
+                let protocolResponse = walletProcessing(thisProtocol, protocolRequest.chainId, protocolRequest.account)
                 if let methods = protocolRequest.methods {
                     var responses = [WalletDirectResponse]()
                     for method in methods {
-                        let response = methodProcessing(method)
+                        let response = methodProcessing(thisProtocol, protocolResponse.chainId, protocolResponse.account, method)
                         response.id = method.id
                         responses.append(response)
                     }
                     protocolResponse.responses = responses
                 }
-                protocolResponses[key] = protocolResponse
+                protocolResponses[thisProtocol] = protocolResponse
             }
             result.protocolResponses = protocolResponses
             result.successful = true
