@@ -2,6 +2,7 @@ Current Proposal
 
 Current proposal is at https://docs.google.com/document/d/1Z93XY9tkO2hbnruD9Q1LVnK0BjELgqWUfWu21vKMynU/edit?usp=sharing
 
+
 Background
 
 Wallet Connect and Walletlink are designed for communication between desktop dApp and mobile wallet, which resides on two different devices. The communication is done through a bridge server. Both dApp and wallet connect to the server with websocket. 
@@ -59,7 +60,7 @@ dApp registry[a][b]
 
 
 
-Wallet registry [c]
+Wallet registry 
 
 {
    "(wallet_uuid)":{
@@ -227,15 +228,3 @@ This is the recommended practice
 	.	To verify the dApp on Android
 	.	Potentially use PackageManager to get signature hash of the calling dApp, and check it against the dApp registry
 
-
-[a]what is this? where is it stored?
-[b]Similar to Wallet Connect, the registry is on git. This is the WC registry repo: https://github.com/WalletConnect/walletconnect-registry and this is their data files: https://github.com/WalletConnect/walletconnect-registry/tree/master/public/data
-[c]also what is this and where is it stored?
-[d]Why is "connection" required anymore?
-
-couldn't the wallet just show the actual requests to the user?
-[e]Technically they don't need to have a "connection" step. Their UX with WalletConnect usually show the dApp name and icon on top of request. I feel this is too light. I feel user needs to be slowed down and exam the request. It is too easy for a scam website to trigger a deep link, requesting user to transfer ETH to his wallet. If user doesn't pay attention, it is too easy to get tricked.
-[f]Are you still imagining that in the wallet the user would have to approve/deny each method separately? I feel like it would be better to have them approve/deny all at once
-
-Of course wallets could implement it however they want, but we should push for what is ideal
-[g]Thats a good point. We can leave it to the wallet developers to decide their UX
