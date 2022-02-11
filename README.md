@@ -1,3 +1,9 @@
+# Current Proposal
+
+Current Proposal
+
+Current proposal is at https://docs.google.com/document/d/1Z93XY9tkO2hbnruD9Q1LVnK0BjELgqWUfWu21vKMynU/edit?usp=sharing
+
 # Background
 When both dApp and wallet are located on the same device, there is no need to route the traffic through an external server. This proposal is to facilitate the communication between dApp and wallet through deeplinks.
 
